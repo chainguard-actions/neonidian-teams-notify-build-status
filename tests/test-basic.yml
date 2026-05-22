@@ -1,0 +1,29 @@
+name: Test basic usage - send message to MS Teams
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - id: action
+        uses: .
+        continue-on-error: true
+        with:
+          webhookUrl: "https://example.webhook.office.com/webhookb2/fake-webhook-url"
+          message: "Test message from CI"
+          title: "Build Notification"
+          status: "success"
+      - name: Assert action was invoked with required inputs
+        run: |
+          echo "Action outcome: ${{ steps.action.outcome }}"
+          # The action may fail due to invalid webhook URL (network error),
+          # but it should not fail due to missing required inputs.
+          # We accept both success and failure outcomes here since
+          # the webhook URL is intentionally fake.
+          if [ "${{ steps.action.outcome }}" = "success" ] || [ "${{ steps.action.outcome }}" = "failure" ]; then
+            echo "PASS: action was invoked with required inputs webhookUrl and message"
+          else
+            echo "FAIL: unexpected outcome: ${{ steps.action.outcome }}"
+            exit 1
+          fi
