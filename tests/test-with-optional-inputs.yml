@@ -1,0 +1,45 @@
+name: Test with optional inputs - title, titleBackgroundColor, status
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Start mock webhook server
+        run: |
+          # Start a simple HTTP server that accepts POST requests and returns 200
+          python3 -c "
+          import http.server, threading, json, sys
+
+          class Handler(http.server.BaseHTTPRequestHandler):
+              def do_POST(self):
+                  length = int(self.headers.get('Content-Length', 0))
+                  body = self.rfile.read(length)
+                  print('Received POST body:', body.decode(), flush=True)
+                  self.send_response(200)
+                  self.end_headers()
+                  self.wfile.write(b'1')
+              def log_message(self, format, *args):
+                  pass
+
+          server = http.server.HTTPServer(('127.0.0.1', 9999), Handler)
+          server.serve_forever()
+          " &
+          sleep 1
+          echo "Mock server started"
+
+      - id: action
+        uses: .
+        with:
+          webhookUrl: "http://127.0.0.1:9999/webhook"
+          message: "Deployment pipeline finished"
+          title: "CI/CD Status"
+          titleBackgroundColor: "good"
+          status: "success"
+
+      - name: Assert action completed with optional inputs
+        run: |
+          echo "Action completed with optional inputs without error"
+          echo "PASS"
