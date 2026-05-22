@@ -1,0 +1,32 @@
+name: 'Send message to MS Teams (webhook)'
+description: 'Send message to channels in MS Teams using webhook'
+author: 'Keerthi Shankar Subramanian'
+
+inputs:
+  webhookUrl:
+    description: 'Incoming webhook URL'
+    required: true
+  message:
+    description: 'Message to be sent to Teams'
+    required: true
+
+# Optional inputs
+  title:
+    description: 'Title of the message card'
+    required: false
+  titleBackgroundColor:
+    description: 'Background color of the title'
+    required: false
+  status:
+    description: 'Status of the GitHub job or step'
+    required: false
+
+# For environment variables see - https://github.com/neonidian/teams-notify-build-status#environment-variables
+
+runs:
+  using: 'node24'
+  main: 'dist/index.js'
+
+branding:
+  icon: 'send'
+  color: 'purple'
