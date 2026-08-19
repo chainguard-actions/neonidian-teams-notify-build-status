@@ -1,4 +1,4 @@
-name: Test basic usage - required inputs only
+name: Test failure status notification
 on:
   workflow_dispatch:
 jobs:
@@ -12,15 +12,18 @@ jobs:
         continue-on-error: true
         with:
           webhookUrl: "https://example.webhook.office.com/webhookb2/fake-webhook-url"
-          message: "Test message from act workflow"
+          message: "Build failed! Please check the logs."
+          title: "CI Build Failed"
+          titleBackgroundColor: "attention"
+          status: "failure"
 
-      - name: Assert action ran (success or graceful failure on invalid webhook)
+      - name: Assert action ran for failure status (success or graceful failure on invalid webhook)
         env:
           OUTCOME: ${{ steps.action.outcome }}
         run: |
           echo "outcome: $OUTCOME"
           if [ "$OUTCOME" = "success" ]; then
-            echo "PASS: action succeeded"
+            echo "PASS: action succeeded sending failure notification"
           elif [ "$OUTCOME" = "failure" ]; then
             echo "PASS: action failed gracefully (invalid webhook URL expected)"
           else
