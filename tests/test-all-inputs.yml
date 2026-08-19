@@ -1,4 +1,4 @@
-name: Test basic usage (required inputs only)
+name: Test all inputs (required and optional)
 on:
   workflow_dispatch:
 jobs:
@@ -12,7 +12,10 @@ jobs:
         continue-on-error: true
         with:
           webhookUrl: "https://example.webhook.office.com/webhookb2/fake-webhook-url"
-          message: "Test message from act workflow"
+          message: "Build completed successfully"
+          title: "CI Build Status"
+          titleBackgroundColor: "good"
+          status: "success"
 
       - name: Assert action ran and handled the fake webhook gracefully
         env:
