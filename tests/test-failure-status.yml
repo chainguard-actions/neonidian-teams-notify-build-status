@@ -1,4 +1,4 @@
-name: Test basic usage - send message to Teams
+name: Test failure status notification
 on:
   workflow_dispatch:
 jobs:
@@ -11,7 +11,10 @@ jobs:
         continue-on-error: true
         with:
           webhookUrl: 'https://example.webhook.office.com/webhookb2/fake-webhook-url'
-          message: 'Test message from GitHub Actions'
+          message: 'Build failed! Please check the logs.'
+          title: 'CI Build Failed'
+          titleBackgroundColor: 'attention'
+          status: 'failure'
       - name: Assert action ran and failed gracefully with fake webhook
         env:
           OUTCOME: ${{ steps.action.outcome }}
