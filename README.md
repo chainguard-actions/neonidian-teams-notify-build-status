@@ -9,7 +9,7 @@ Hardened by [Chainguard](https://www.chainguard.dev) from the upstream action at
 | Version | Tag | Upstream commit |
 |---------|-----|-----------------|
 | v3.2.5 | [`v3.2.5`](https://github.com/chainguard-actions/neonidian-teams-notify-build-status/tree/v3.2.5) | — |
-| v4.0.0 | [`v4.0.0`](https://github.com/chainguard-actions/neonidian-teams-notify-build-status/tree/v4.0.0) | — |
+| v4.0.0 | [`v4.0.0`](https://github.com/chainguard-actions/neonidian-teams-notify-build-status/tree/v4.0.0) | [`c30b5a8`](https://github.com/neonidian/teams-notify-build-status/commit/c30b5a8b22086e091cf5fddc55f1bc39121376ae) |
 | v4.1.0 | [`v4.1.0`](https://github.com/chainguard-actions/neonidian-teams-notify-build-status/tree/v4.1.0) | [`8b63dec`](https://github.com/neonidian/teams-notify-build-status/commit/8b63dece1c06c3a43ca66e31d9255353b876f16d) |
 | v5.0.0 | [`v5.0.0`](https://github.com/chainguard-actions/neonidian-teams-notify-build-status/tree/v5.0.0) | — |
 
