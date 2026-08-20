@@ -1,6 +1,11 @@
 {
   "owner": "neonidian",
   "repo": "teams-notify-build-status",
-  "version": "",
-  "url": "https://github.com/neonidian/teams-notify-build-status"
+  "version": "v5.0.0",
+  "commit_sha": "2f09c751926185fd6c74e21d8cfd82b132ee0050",
+  "url": "https://github.com/neonidian/teams-notify-build-status",
+  "policy_sha": "d636be7e43ef829af6e853da6b3c7566db9f72fe",
+  "test_policy_sha": "843adf9e4b8f85d0c08b27b9d0b09dd094b54702",
+  "test_agent_version": "2",
+  "harden_agent_version": "2"
 }
